@@ -183,6 +183,7 @@ class HolidayList:
         current_year = current_date.year
         current_week_number = get_week_number(current_date)
 
+        print("Weather displayed is not real, for display purposes only for now")
         hdays_to_disp = self.filter_holidays_by_week(current_year, current_week_number)
         for hday in hdays_to_disp:
             print(hday, f"- {random.choice(test_weather_states)}")
