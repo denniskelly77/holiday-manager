@@ -1,0 +1,66 @@
+Pseudocode for holiday_manager_main.py
+
+Import Statements
+
+Helper functions for parsing dates
+
+Helper function for webscraping
+
+Holiday Class
+    __init__ pulls in name and date, checks for date typing
+    __str__ for representing object
+    __eq__ checks name and date are equal, used later in HolidayList Class
+
+HolidayList Class
+    __init__ = []
+    addHoliday(self, hday) 
+        checks that hday is a holiday, appends to inner list if so
+    removeHoliday(self, hday) 
+        checks inner list for hday, removes it if found
+    read_json 
+        uses json library to parse holidays.json, loads it w/ self.addHoliday
+    save_json 
+        uses json library to export inner list as json file
+    scrapeHolidays
+        w/ BeautifulSoup parses website, adds Holidays found to inner list
+        makes use of helper function above
+    numHolidays
+        returns length of inner list
+    filter_holidays_in_week(self, year, week)
+        filters through inner list to find holidays occurring during the input week and year
+    displayHolidaysinWeek(self, year, week)
+        calls above filter method to find holidays
+        prints the holidays found thereby
+    getWeather(self)
+        finds the holidays occurring in the current week
+        also queries Weather API to get weather data for those days
+        displays these in tandem
+    viewCurrentWeek(self)
+        calculates current year and week
+        calls self.displayHolidaysinWeek to print holidays in week and year
+
+disp_menu
+    prints main menu text
+    records, validates and returns user selection
+
+stay_in_menu(save_state)
+    takes in current save state
+    displays relevant message to user, records and validates user input
+    returns boolean determining whether or not user wishes to continue using application
+
+main
+    creates instance of HolidayList
+    uses read_json and scrapeHolidays to populate this instance
+    
+    initiates while loop:
+        disp_menu
+        depending on user input
+            Adds Holiday to HolidayList instance
+            Removes Holiday from HolidayList instance
+            Saves contents of HolidayList inner list to new_holidays_list.json
+            Displays holidays falling in a year/week combo
+                -Shows weather for current week if requested
+            Calls stay_in_menu() function
+
+if __name__ == "__main__"
+    main()
